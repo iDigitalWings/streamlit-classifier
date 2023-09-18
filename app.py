@@ -1,27 +1,11 @@
-# Import Streamlit and Pandas
-import math
 import os
-import random
-
 import streamlit as st
-import pandas as pd
-
-# Import for API calls
 import requests
-
-# Import for navbar
-from streamlit_option_menu import option_menu
-
-# Import for dyanmic tagging
 from streamlit_tags import st_tags, st_tags_sidebar
-
-# Imports for aggrid
-from st_aggrid import AgGrid
 import pandas as pd
 from data import chatlist
 
-# The code below is for the title and logo.
-st.set_page_config(layout='wide', page_title="Zero-Shot Text Classifier", page_icon="assets/logo.png")
+st.set_page_config(layout='wide', page_title="数翼 Streamlit Classifier", page_icon="assets/logo.png")
 
 colors = [
     "#ff2b2b",
@@ -171,11 +155,9 @@ elif submit_button or st.session_state.valid_inputs_received:
             if submit_button:
                 st.session_state.valid_inputs_received = True
 
-
             def query(payload):
                 response = requests.post(API_URL, headers=headers, json=payload)
                 return response.json()
-
 
             listToAppend = []
 
@@ -245,7 +227,6 @@ elif submit_button or st.session_state.valid_inputs_received:
                 st.area_chart(df, x='句子', y=multiselectComponent, color=colors[:len(multiselectComponent)])
             with col2:
                 st.bar_chart(df, x='句子', y=multiselectComponent, color=colors[:len(multiselectComponent)])
-
 
         except UnicodeError as ve:
             print(ve)
